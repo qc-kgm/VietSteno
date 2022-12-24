@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:paddingVertical="8dp"
+    tools:context=".MainActivity">
+
+
+<!--    <Button-->
+<!--        android:id="@+id/btnShift1"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:paddingVertical="16dp"-->
+<!--        android:text="SHIFT 1"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="@drawable/bg_corner_4dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_goneMarginStart="8dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnShift2"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:paddingHorizontal="20dp"-->
+<!--        android:paddingVertical="16dp"-->
+<!--        android:text="SHIFT 2"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="@drawable/bg_corner_4dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_goneMarginEnd="8dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLEAR"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_corner_4dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginHorizontal="16dp"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnSpace"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <Button
+            android:id="@+id/btnSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPACE"
+            android:textColor="@color/black"
+            android:background="#F1ABAB"
+            android:layout_marginHorizontal="16dp"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintStart_toEndOf="@id/btnClear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ScrollView
+        android:id="@+id/lnContent"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:paddingHorizontal="4dp"
+        android:background="@drawable/bg_content_corner_4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnClear">
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:textSize="26sp"
+        android:gravity="start"
+        android:hint="Hi!"
+        tools:text="Hi!"
+/>
+    </ScrollView>
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        android:id="@+id/joy1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@id/joy2"
+        app:layout_constraintEnd_toStartOf="@id/lnContent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:JV_borderWidth="2dp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        android:id="@+id/joy2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:JV_borderWidth="2dp"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_buttonSizeRatio="20%"
+        android:background="@drawable/bg_joystick_new"
+        app:layout_constraintBottom_toTopOf="@id/joy3"
+        app:layout_constraintEnd_toEndOf="@+id/joy1"
+        app:layout_constraintStart_toStartOf="@+id/joy1"
+        app:layout_constraintTop_toBottomOf="@id/joy1" />
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        android:id="@+id/joy3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:JV_borderWidth="2dp"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_buttonSizeRatio="20%"
+        android:background="@drawable/bg_joystick_new"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/joy1"
+        app:layout_constraintStart_toStartOf="@+id/joy1"
+        app:layout_constraintTop_toBottomOf="@id/joy2" />
+
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        android:id="@+id/joy4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        app:JV_borderWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@id/joy5"
+        app:layout_constraintEnd_toEndOf="@+id/joy5"
+        app:layout_constraintStart_toStartOf="@+id/joy5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        android:id="@+id/joy5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:JV_borderWidth="2dp"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_buttonSizeRatio="20%"
+        android:background="@drawable/bg_joystick_new"
+        app:layout_constraintBottom_toTopOf="@id/joy6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lnContent"
+        app:layout_constraintTop_toBottomOf="@id/joy4" />
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        android:id="@+id/joy6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:JV_borderWidth="2dp"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_buttonSizeRatio="20%"
+        android:background="@drawable/bg_joystick_new"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lnContent"
+        app:layout_constraintTop_toBottomOf="@id/joy5" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
