@@ -4,67 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@color/white"
+    android:orientation="horizontal"
     android:paddingVertical="8dp"
     tools:context=".MainActivity">
 
 
-<!--    <Button-->
-<!--        android:id="@+id/btnShift1"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:paddingHorizontal="20dp"-->
-<!--        android:paddingVertical="16dp"-->
-<!--        android:text="SHIFT 1"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="@drawable/bg_corner_4dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        app:layout_goneMarginStart="8dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btnShift1"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:paddingHorizontal="20dp"-->
+    <!--        android:paddingVertical="16dp"-->
+    <!--        android:text="SHIFT 1"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:background="@drawable/bg_corner_4dp"-->
+    <!--        android:layout_marginTop="12dp"-->
+    <!--        app:layout_goneMarginStart="8dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    <Button-->
-<!--        android:id="@+id/btnShift2"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:paddingHorizontal="20dp"-->
-<!--        android:paddingVertical="16dp"-->
-<!--        android:text="SHIFT 2"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="@drawable/bg_corner_4dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        app:layout_goneMarginEnd="8dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btnShift2"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:paddingHorizontal="20dp"-->
+    <!--        android:paddingVertical="16dp"-->
+    <!--        android:text="SHIFT 2"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:background="@drawable/bg_corner_4dp"-->
+    <!--        android:layout_marginTop="12dp"-->
+    <!--        app:layout_goneMarginEnd="8dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-        <Button
-            android:id="@+id/btnClear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CLEAR"
-            android:textColor="@color/white"
-            android:background="@drawable/bg_corner_4dp"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            android:layout_marginHorizontal="16dp"
-            android:paddingHorizontal="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnSpace"
-            app:layout_constraintBottom_toBottomOf="parent" />
-        <Button
-            android:id="@+id/btnSpace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SPACE"
-            android:textColor="@color/black"
-            android:background="#F1ABAB"
-            android:layout_marginHorizontal="16dp"
-            android:paddingHorizontal="16dp"
-            app:layout_constraintStart_toEndOf="@id/btnClear"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_corner_4dp"
+        android:paddingHorizontal="16dp"
+        android:text="CLEAR"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnSpace"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="#F1ABAB"
+        android:paddingHorizontal="16dp"
+        android:text="SPACE"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnClear" />
 
     <ScrollView
         android:id="@+id/lnContent"
@@ -73,35 +74,131 @@
         android:layout_marginHorizontal="100dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
-        android:paddingHorizontal="4dp"
         android:background="@drawable/bg_content_corner_4dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingHorizontal="4dp"
+        app:layout_constraintBottom_toTopOf="@id/btnClear"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnClear">
-    <TextView
-        android:id="@+id/tvContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
-        android:textSize="26sp"
-        android:gravity="start"
-        android:hint="Hi!"
-        tools:text="Hi!"
-/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:gravity="start"
+            android:hint="Hi!"
+            android:textSize="26sp"
+            tools:text="Hi!" />
     </ScrollView>
+
     <io.github.controlwear.virtual.joystick.android.JoystickView
         android:id="@+id/joy1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_joystick_new"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_borderWidth="2dp"
+        app:JV_buttonSizeRatio="20%"
         app:layout_constraintBottom_toTopOf="@id/joy2"
         app:layout_constraintEnd_toStartOf="@id/lnContent"
         app:layout_constraintStart_toStartOf="parent"
-        app:JV_borderWidth="2dp"
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside" />
+
+
+    <TextView
+        android:id="@+id/tvHintc1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/joy1"
+        app:layout_constraintTop_toTopOf="@id/joy1"
+        app:layout_constraintBottom_toBottomOf="@id/joy1"
+        tools:text="m" />
+    <TextView
+        android:id="@+id/tvHintc2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/joy1"
+        app:layout_constraintTop_toTopOf="@id/joy1"
+        tools:text="q" />
+    <TextView
+        android:id="@+id/tvHintc3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy1"
+        app:layout_constraintStart_toStartOf="@id/joy1"
+        app:layout_constraintBottom_toTopOf="@id/joy1"
+        tools:text="p" />
+    <TextView
+        android:id="@+id/tvHintc4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy1"
+        app:layout_constraintTop_toTopOf="@id/joy1"
+        tools:text="gi" />
+    <TextView
+        android:id="@+id/tvHintc5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/joy1"
+        app:layout_constraintTop_toTopOf="@id/joy1"
+        app:layout_constraintBottom_toBottomOf="@id/joy1"
+        tools:text="~" />
+    <TextView
+        android:id="@+id/tvHintc6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy1"
+        app:layout_constraintBottom_toBottomOf="@id/joy1"
+        tools:text="đ" />
+    <TextView
+        android:id="@+id/tvHintc7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy1"
+        app:layout_constraintEnd_toEndOf="@id/joy1"
+        app:layout_constraintBottom_toBottomOf="@id/joy1"
+        tools:text="d" />
+
+    <TextView
+        android:id="@+id/tvHintc8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy1"
+        app:layout_constraintBottom_toBottomOf="@id/joy1"
+        tools:text="v" />
+
+
+
+
 
     <io.github.controlwear.virtual.joystick.android.JoystickView
         android:id="@+id/joy2"
@@ -109,40 +206,315 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:JV_borderWidth="2dp"
-        app:JV_backgroundSizeRatio="90%"
-        app:JV_buttonSizeRatio="20%"
         android:background="@drawable/bg_joystick_new"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_borderWidth="2dp"
+        app:JV_buttonSizeRatio="20%"
         app:layout_constraintBottom_toTopOf="@id/joy3"
         app:layout_constraintEnd_toEndOf="@+id/joy1"
         app:layout_constraintStart_toStartOf="@+id/joy1"
         app:layout_constraintTop_toBottomOf="@id/joy1" />
+
+    <TextView
+        android:id="@+id/tvHintb1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/joy2"
+        app:layout_constraintBottom_toBottomOf="@id/joy2"
+        app:layout_constraintTop_toTopOf="@id/joy2"
+        tools:text="ng/ngh" />
+    <TextView
+        android:id="@+id/tvHintb2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy2"
+        app:layout_constraintTop_toTopOf="@id/joy2"
+        tools:text="m" />
+    <TextView
+        android:id="@+id/tvHintb3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy2"
+        app:layout_constraintStart_toStartOf="@id/joy2"
+        app:layout_constraintBottom_toTopOf="@id/joy2"
+        tools:text="n" />
+    <TextView
+        android:id="@+id/tvHintb4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy2"
+        app:layout_constraintTop_toTopOf="@id/joy2"
+        tools:text="l" />
+    <TextView
+        android:id="@+id/tvHintb5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/joy2"
+        app:layout_constraintTop_toTopOf="@id/joy2"
+        app:layout_constraintBottom_toBottomOf="@id/joy2"
+        tools:text="ch" />
+    <TextView
+        android:id="@+id/tvHintb6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy2"
+        app:layout_constraintBottom_toBottomOf="@id/joy2"
+        tools:text="nh" />
+    <TextView
+        android:id="@+id/tvHintb7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy2"
+        app:layout_constraintEnd_toEndOf="@id/joy2"
+        app:layout_constraintBottom_toBottomOf="@id/joy2"
+        tools:text="kh" />
+    <TextView
+        android:id="@+id/tvHintb8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy2"
+        app:layout_constraintBottom_toBottomOf="@id/joy2"
+        tools:text="ph" />
+
+
+
+
+
+
+
     <io.github.controlwear.virtual.joystick.android.JoystickView
         android:id="@+id/joy3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:JV_borderWidth="2dp"
-        app:JV_backgroundSizeRatio="90%"
-        app:JV_buttonSizeRatio="20%"
         android:background="@drawable/bg_joystick_new"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_borderWidth="2dp"
+        app:JV_buttonSizeRatio="20%"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/joy1"
         app:layout_constraintStart_toStartOf="@+id/joy1"
         app:layout_constraintTop_toBottomOf="@id/joy2" />
+
+    <TextView
+        android:id="@+id/tvHinta1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy3"
+        app:layout_constraintStart_toEndOf="@id/joy3"
+        app:layout_constraintTop_toTopOf="@id/joy3"
+        tools:text="k/c" />
+
+    <TextView
+        android:id="@+id/tvHinta2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy3"
+        app:layout_constraintTop_toTopOf="@id/joy3"
+        tools:text="h" />
+
+    <TextView
+        android:id="@+id/tvHinta3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/joy3"
+        app:layout_constraintEnd_toEndOf="@id/joy3"
+        app:layout_constraintStart_toStartOf="@id/joy3"
+        tools:text="r" />
+
+    <TextView
+        android:id="@+id/tvHinta4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy3"
+        app:layout_constraintTop_toTopOf="@id/joy3"
+        tools:text="b" />
+
+    <TextView
+        android:id="@+id/tvHinta5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy3"
+        app:layout_constraintEnd_toStartOf="@id/joy3"
+        app:layout_constraintTop_toTopOf="@id/joy3"
+        tools:text="th" />
+
+    <TextView
+        android:id="@+id/tvHinta6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy3"
+        app:layout_constraintStart_toStartOf="@id/joy3"
+        tools:text="tr" />
+
+    <TextView
+        android:id="@+id/tvHinta7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy3"
+        app:layout_constraintEnd_toEndOf="@id/joy3"
+        app:layout_constraintStart_toStartOf="@id/joy3"
+        tools:text="s" />
+
+    <TextView
+        android:id="@+id/tvHinta8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy3"
+        app:layout_constraintEnd_toEndOf="@id/joy3"
+        tools:text="t" />
+
 
     <io.github.controlwear.virtual.joystick.android.JoystickView
         android:id="@+id/joy4"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_joystick_new"
+        app:JV_backgroundSizeRatio="90%"
         app:JV_borderWidth="2dp"
+        app:JV_buttonSizeRatio="20%"
         app:layout_constraintBottom_toTopOf="@id/joy5"
         app:layout_constraintEnd_toEndOf="@+id/joy5"
         app:layout_constraintStart_toStartOf="@+id/joy5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvHintf1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/joy4"
+        app:layout_constraintBottom_toBottomOf="@id/joy4"
+        app:layout_constraintStart_toEndOf="@id/joy4"
+        tools:text="uê" />
+    <TextView
+        android:id="@+id/tvHintf2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/joy4"
+        app:layout_constraintStart_toEndOf="@id/joy4"
+        tools:text="uyê/uya" />
+    <TextView
+        android:id="@+id/tvHintf3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/joy4"
+        app:layout_constraintEnd_toEndOf="@id/joy4"
+        app:layout_constraintStart_toStartOf="@id/joy4"
+        tools:text="oo" />
+    <TextView
+        android:id="@+id/tvHintf4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/joy4"
+        app:layout_constraintStart_toStartOf="@id/joy4"
+        tools:text="oă" />
+    <TextView
+        android:id="@+id/tvHintf5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/joy4"
+        app:layout_constraintEnd_toStartOf="@id/joy4"
+        app:layout_constraintBottom_toBottomOf="@id/joy4"
+        tools:text="uâ" />
+    <TextView
+        android:id="@+id/tvHintf6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy4"
+        app:layout_constraintBottom_toBottomOf="@id/joy4"
+        android:layout_marginStart="-8dp"
+        tools:text="ươ" />
+    <TextView
+        android:id="@+id/tvHintf7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy4"
+        app:layout_constraintEnd_toEndOf="@id/joy4"
+        app:layout_constraintTop_toBottomOf="@id/joy4"
+        android:layout_marginTop="-8dp"
+        tools:text="ia/iê/yê" />
+    <TextView
+        android:id="@+id/tvHintf8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy4"
+        app:layout_constraintBottom_toBottomOf="@id/joy4"
+        tools:text="uơ" />
+
+
+
+
+
+
+
 
     <io.github.controlwear.virtual.joystick.android.JoystickView
         android:id="@+id/joy5"
@@ -150,30 +522,210 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:JV_borderWidth="2dp"
-        app:JV_backgroundSizeRatio="90%"
-        app:JV_buttonSizeRatio="20%"
         android:background="@drawable/bg_joystick_new"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_borderWidth="2dp"
+        app:JV_buttonSizeRatio="20%"
         app:layout_constraintBottom_toTopOf="@id/joy6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/lnContent"
         app:layout_constraintTop_toBottomOf="@id/joy4" />
+
+
+    <TextView
+        android:id="@+id/tvHinte1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy5"
+        app:layout_constraintStart_toEndOf="@id/joy5"
+        app:layout_constraintTop_toTopOf="@id/joy5"
+        tools:text="o" />
+
+    <TextView
+        android:id="@+id/tvHinte2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy5"
+        app:layout_constraintTop_toTopOf="@id/joy5"
+        tools:text="ư" />
+
+    <TextView
+        android:id="@+id/tvHinte3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/joy5"
+        app:layout_constraintEnd_toEndOf="@id/joy5"
+        app:layout_constraintStart_toStartOf="@id/joy5"
+        android:layout_marginBottom="-8dp"
+        tools:text="u" />
+
+    <TextView
+        android:id="@+id/tvHinte4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/joy5"
+        app:layout_constraintTop_toTopOf="@id/joy5"
+        tools:text="uô/ua" />
+
+    <TextView
+        android:id="@+id/tvHinte5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy5"
+        app:layout_constraintEnd_toStartOf="@id/joy5"
+        app:layout_constraintTop_toTopOf="@id/joy5"
+        tools:text="uy" />
+
+    <TextView
+        android:id="@+id/tvHinte6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy5"
+        app:layout_constraintStart_toStartOf="@id/joy5"
+        tools:text="oe" />
+
+    <TextView
+        android:id="@+id/tvHinte7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy5"
+        app:layout_constraintEnd_toEndOf="@id/joy5"
+        app:layout_constraintStart_toStartOf="@id/joy5"
+        tools:text="oa" />
+
+    <TextView
+        android:id="@+id/tvHinte8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy5"
+        app:layout_constraintEnd_toEndOf="@id/joy5"
+        tools:text="ô" />
+
+
     <io.github.controlwear.virtual.joystick.android.JoystickView
         android:id="@+id/joy6"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        app:JV_borderWidth="2dp"
-        app:JV_backgroundSizeRatio="90%"
-        app:JV_buttonSizeRatio="20%"
         android:background="@drawable/bg_joystick_new"
+        app:JV_backgroundSizeRatio="90%"
+        app:JV_borderWidth="2dp"
+        app:JV_buttonSizeRatio="20%"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/lnContent"
         app:layout_constraintTop_toBottomOf="@id/joy5" />
 
+    <TextView
+        android:id="@+id/tvHintd1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy6"
+        app:layout_constraintStart_toEndOf="@id/joy6"
+        app:layout_constraintTop_toTopOf="@id/joy6"
+        tools:text="a" />
 
+    <TextView
+        android:id="@+id/tvHintd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy6"
+        app:layout_constraintTop_toTopOf="@id/joy6"
+        tools:text="ă" />
+
+    <TextView
+        android:id="@+id/tvHintd3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/joy6"
+        app:layout_constraintStart_toStartOf="@id/joy6"
+        app:layout_constraintTop_toTopOf="@id/joy6"
+        tools:text="â" />
+
+    <TextView
+        android:id="@+id/tvHintd4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/joy6"
+        app:layout_constraintTop_toTopOf="@id/joy6"
+        tools:text="ơ" />
+
+    <TextView
+        android:id="@+id/tvHintd5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy6"
+        app:layout_constraintEnd_toStartOf="@id/joy6"
+        app:layout_constraintTop_toTopOf="@+id/joy6"
+        tools:text="i" />
+
+    <TextView
+        android:id="@+id/tvHintd6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy6"
+        app:layout_constraintStart_toStartOf="@id/joy6"
+        tools:text="y" />
+
+    <TextView
+        android:id="@+id/tvHintd7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy6"
+        app:layout_constraintEnd_toEndOf="@id/joy6"
+        app:layout_constraintStart_toStartOf="@id/joy6"
+        tools:text="e" />
+
+    <TextView
+        android:id="@+id/tvHintd8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#DF2626"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/joy6"
+        app:layout_constraintEnd_toEndOf="@id/joy6"
+        tools:text="ê" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
