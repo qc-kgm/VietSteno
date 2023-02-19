@@ -1,21 +1,27 @@
 package com.example.test.steno
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Html
-import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
+import com.example.test.steno.utils.AppPrefs
+import com.example.test.steno.utils.AppPrefs.get
 import kotlinx.android.synthetic.main.activity_main.*
 import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
 class MainActivity : AppCompatActivity() {
+    lateinit var sharedPreferences : SharedPreferences
     var textFinal: MutableLiveData<String> = MutableLiveData("")
     var now: String = ""
     var state = 0   // 0 : trống
     var isDev = false
+    var doubleBackToExit = false
 
     // 1: da co am dau va am chinh
     var code: String = ""
@@ -26,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     var stateX = false
     var stateY = false
+
+    var isEnableHint = true
 
     var a = "" // vi tri hien tai cua joy3
     var b = "" // vi tri hien tai cua joy2
@@ -48,6 +56,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        sharedPreferences = AppPrefs.customPrefs(this,"VIET_STENO")
         setupUI()
         setupOnMove()
         initTextHintState0()
@@ -63,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             if (state == 0) {
                 setVisibleAllTextViewHintAC(false)
                 initTextHintState0()
-                if (listAC != null) {
+                if (listAC != null && isEnableHint) {
                     setVisibleListSuggestTextViewHintAC(listAC.second)
                 }
             }
@@ -85,8 +94,12 @@ class MainActivity : AppCompatActivity() {
         textFinal.observe(this, {
             tvContent.text = it
         })
-        readInputADAC()
+//        readInputADAC()
         if(isDev) gen()
+        isEnableHint = sharedPreferences["ENABLE_HINT",true] ?: true
+        if(!isEnableHint){
+            setInvisibleAllHint()
+        }
     }
 
 
@@ -136,6 +149,16 @@ class MainActivity : AppCompatActivity() {
         tvHintd6.isVisible = b
         tvHintd7.isVisible = b
         tvHintd8.isVisible = b
+    }
+
+    fun setInvisibleAllHint(){
+        val list = listOf("a","b","c","d","e","f")
+        list.forEach { t ->
+            for (i in 1..8){
+                val id = resources.getIdentifier("tvHint"+ t +i.toString(), "id", packageName)
+                findViewById<TextView>(id).isVisible = false
+            }
+        }
     }
 
     // hàm tạo các cặp âm đầu , âm chính có thể có để hiển thị hint khi chọn âm chính
@@ -599,21 +622,23 @@ class MainActivity : AppCompatActivity() {
         if (state == 1) {
             code = x.plus(y)
             // get text ung voi trang thai chi co am dau - am chinh
-            now = listFirst.find { it.first == code }?.second ?: ""
+//            now = listFirst.find { it.first == code }?.second ?: ""
+            now = sharedPreferences[code] ?: ""
             if (now == "") {
                 state = 0
                 code = ""
                 setVisibleAllTextViewHintAC(false)
             } else {
                 tvContent.text = textFinal.value + now
-                setVisibleAllTextViewHintAC(true)
+                setVisibleAllTextViewHintAC(true && isEnableHint)
                 initTextHintState1()
             }
 
         }
         if (state == 2) {
             code = code + x + y
-            val result = listTotal.find { it.first == code }?.second ?: ""
+//            val result = listTotal.find { it.first == code }?.second ?: ""
+            val result = sharedPreferences[code] ?: ""
             if (result == "") {
                 textFinal.value = textFinal.value + " "
             } else {
@@ -1178,4 +1203,17 @@ class MainActivity : AppCompatActivity() {
         return
     }
 
+    override fun onBackPressed() {
+        if (doubleBackToExit) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExit = true
+        Toast.makeText(this, "Ấn back lần nữa quay lại", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed({
+            doubleBackToExit = false
+        }, 2000)
+    }
 }
