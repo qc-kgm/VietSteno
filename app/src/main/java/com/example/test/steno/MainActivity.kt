@@ -450,7 +450,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setupOnMove() {
         joy1.setOnMoveListener { angle, strength ->
-            if (strength == 0 && stateY) {
+            if (strength == 0 && stateY && stateX) {
                 stateX = false
                 if (stateY) {
                     state++
@@ -477,7 +477,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         joy2.setOnMoveListener { angle, strength ->
-            if (strength == 0 && stateY) {
+            if (strength == 0 && stateY && stateX) {
                 stateX = false
                 if (stateY) {
                     state++
@@ -504,7 +504,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         joy3.setOnMoveListener { angle, strength ->
-            if (strength == 0 && stateY) {
+            if (strength == 0 && stateY && stateX) {
                 stateX = false
                 if (stateY) {
                     state++

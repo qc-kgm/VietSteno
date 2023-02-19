@@ -15,7 +15,8 @@
         <activity
             android:name=".SettingActivity"
             android:exported="false"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
         <activity
             android:name=".StartActivity"
             android:exported="true"
