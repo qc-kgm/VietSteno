@@ -1210,7 +1210,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         this.doubleBackToExit = true
-        Toast.makeText(this, "Ấn back lần nữa quay lại", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Ấn back lần nữa để quay lại", Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed({
             doubleBackToExit = false
