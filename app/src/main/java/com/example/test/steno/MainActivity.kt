@@ -984,11 +984,11 @@ class MainActivity : AppCompatActivity() {
 //                if(amcuoi.isNotEmpty()) {
                 when (dau) {
                     "e1" -> return listOf("uô", "ua")
-                    "e2" -> return listOf("uố", "uá")
-                    "e3" -> return listOf("uồ", "uà")
-                    "e4" -> return listOf("uổ", "uả")
-                    "e5" -> return listOf("uỗ", "uã")
-                    "e6" -> return listOf("uộ", "uộ")
+                    "e2" -> return listOf("uố", "uá","úa")
+                    "e3" -> return listOf("uồ", "uà","ùa")
+                    "e4" -> return listOf("uổ", "uả","ủa")
+                    "e5" -> return listOf("uỗ", "uã","ũa")
+                    "e6" -> return listOf("uộ", "uạ","ụa")
                     else -> return listOf("")
                 }
 //                } else {
@@ -1017,7 +1017,7 @@ class MainActivity : AppCompatActivity() {
             "oe" -> {
                 when (dau) {
                     "e1" -> return listOf("oe")
-                    "e2" -> return listOf("oẻ")
+                    "e2" -> return listOf("oé")
                     "e3" -> return listOf("oè")
                     "e4" -> return listOf("oẻ")
                     "e5" -> return listOf("oẽ")
@@ -1142,11 +1142,11 @@ class MainActivity : AppCompatActivity() {
 //                if(amdau.isEmpty() && amcuoi.isNotEmpty()){
                 when (dau) {
                     "e1" -> return listOf("yê", "ia", "iê")
-                    "e2" -> return listOf("yế", "iá", "iế")
-                    "e3" -> return listOf("yề", "ià", "iề")
-                    "e4" -> return listOf("yể", "ià", "iề")
-                    "e5" -> return listOf("yễ", "iã", "iễ")
-                    "e6" -> return listOf("yệ", "iạ", "iệ")
+                    "e2" -> return listOf("yế", "iá", "iế","ía")
+                    "e3" -> return listOf("yề", "ià", "iề","ìa")
+                    "e4" -> return listOf("yể", "iả", "iể","ỉa")
+                    "e5" -> return listOf("yễ", "iã", "iễ","ĩa")
+                    "e6" -> return listOf("yệ", "iạ", "iệ","ịa")
                     else -> return listOf("")
                 }
 //                } else if(amcuoi.isEmpty()){

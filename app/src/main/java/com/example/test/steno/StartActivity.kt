@@ -67,7 +67,7 @@ class StartActivity : AppCompatActivity() {
         val inputSourceV1 =
             this.resources.openRawResource(R.raw.tudiensource) // tu dien chua cac tu theo bo luat ban dau (v1)
         val inputSource =
-            this.resources.openRawResource(R.raw.allword3) // tu dien chua cac tu theo bo luat moi (v2)
+            this.resources.openRawResource(R.raw.allword4) // tu dien chua cac tu theo bo luat moi (v2)
 
 //        var xlWb = WorkbookFactory.create(inputStream)
         val xlWb = XSSFWorkbook(inputStream)
@@ -96,6 +96,33 @@ class StartActivity : AppCompatActivity() {
             }
         }
         return xlWs
+    }
+
+    fun sosanh(){ // ham dung de test
+        var listS = mutableListOf<String>()
+        var listD = mutableListOf<String>()
+        val inputSourceV1 =
+            this.resources.openRawResource(R.raw.tudiensource) // tu dien chua cac tu theo bo luat ban dau (v1)
+        val inputSource =
+            this.resources.openRawResource(R.raw.allword4)
+        val xlWbDict = XSSFWorkbook(inputSource)
+        val xlWbDictSource = XSSFWorkbook(inputSourceV1)
+        val xlWs = xlWbDictSource.getSheetAt(0)
+        for (i in 0..xlWs.lastRowNum) {
+            val row = xlWs.getRow(i)
+            listS.add(row.getCell(1).stringCellValue)
+//            sharedPreferences.set(row.getCell(7).stringCellValue,row.getCell(8).stringCellValue)
+        }
+        val dictionary = xlWbDict.getSheetAt(0)
+        for (i in 0..dictionary.lastRowNum) {
+            val row = dictionary.getRow(i)
+            listD.add(row.getCell(0).stringCellValue)
+//            sharedPreferences.set(row.getCell(1).stringCellValue,row.getCell(0).stringCellValue)
+        }
+        var listM = listS.filterNot { listD.contains(it) }
+        listM.forEach{
+            println(it)
+        }
     }
 
 }
