@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.Html
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -22,6 +23,10 @@ class MainActivity : AppCompatActivity() {
     var state = 0   // 0 : trống
     var isDev = false
     var doubleBackToExit = false
+    var refCodeNow = MutableLiveData<String>("")
+    var isPractice = false // che do luyen tap
+    var textTest = Pair("","")
+    var codeConfirm = ""
 
     // 1: da co am dau va am chinh
     var code: String = ""
@@ -56,9 +61,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        isPractice = intent.getBooleanExtra("PRACTICE",false)
         sharedPreferences = AppPrefs.customPrefs(this,"VIET_STENO")
         setupUI()
         setupOnMove()
+        if(isPractice) {
+            readAllWord()
+            genTextTest()
+        }
+        tvWordPractice.isVisible = isPractice
+        btnReload.isVisible = isPractice
         initTextHintState0()
         btnSpace.setOnClickListener {
             state = 0
@@ -76,6 +88,10 @@ class MainActivity : AppCompatActivity() {
                     setVisibleListSuggestTextViewHintAC(listAC.second)
                 }
             }
+        })
+        refCodeNow.observe(this,{
+            Log.d("TAG","refCodeNow {${refCodeNow.value}}")
+            tvCode.text = it
         })
 
         // set property for lib apache poi
@@ -100,6 +116,19 @@ class MainActivity : AppCompatActivity() {
         if(!isEnableHint){
             setInvisibleAllHint()
         }
+        btnReload.setOnClickListener {
+            genTextTest()
+            textFinal.value = ""
+            state = 0
+            amdau.value = ""
+        }
+    }
+
+
+    fun genTextTest(){
+        val randomText = (0..6000).random()
+        textTest = listTotal[randomText]
+        tvWordPractice.text = textTest.second
     }
 
 
@@ -120,6 +149,11 @@ class MainActivity : AppCompatActivity() {
             state = 0
             amdau.value = ""
             true
+        }
+        if(isPractice){
+            tvWordPractice.isVisible = true
+            tvCode.isVisible = true
+            btnSpace.isVisible = false
         }
     }
 
@@ -394,6 +428,14 @@ class MainActivity : AppCompatActivity() {
         tvHinta6.text = "tr"
         tvHinta7.text = "s"
         tvHinta8.text = "t"
+        tvHinte1.setTextAppearance(R.style.Font_Hint)
+        tvHinte2.setTextAppearance(R.style.Font_Hint)
+        tvHinte3.setTextAppearance(R.style.Font_Hint)
+        tvHinte4.setTextAppearance(R.style.Font_Hint)
+        tvHinte5.setTextAppearance(R.style.Font_Hint)
+        tvHinte6.setTextAppearance(R.style.Font_Hint)
+        tvHinte7.setTextAppearance(R.style.Font_Hint)
+        tvHinte8.setTextAppearance(R.style.Font_Hint)
     }
 
     // đặt lại các text hint cho âm cuối và thanh điệu
@@ -446,6 +488,14 @@ class MainActivity : AppCompatActivity() {
         tvHinta6.text = ""
         tvHinta7.text = ""
         tvHinta8.text = ""
+        tvHinte1.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte2.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte3.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte4.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte5.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte6.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte7.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte8.setTextAppearance(R.style.Font_Hint_Large)
     }
 
     fun setupOnMove() {
@@ -460,6 +510,7 @@ class MainActivity : AppCompatActivity() {
             } else if (strength == 0) {
                 stateX = false
                 amdau.value = ""
+                x = ""
             }
             if (strength > 70) {
                 stateX = true
@@ -475,6 +526,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 amdau.value = x
             }
+            if(state == 0) {
+                refCodeNow.value = x+y+" - "
+            } else if(state == 1){
+                var ad = refCodeNow.value?.substring(0,4)
+                refCodeNow.value = ad + " - " +x+y
+            }
         }
         joy2.setOnMoveListener { angle, strength ->
             if (strength == 0 && stateY && stateX) {
@@ -487,6 +544,7 @@ class MainActivity : AppCompatActivity() {
             } else if (strength == 0) {
                 stateX = false
                 amdau.value = ""
+                x =""
             }
             if (strength > 70) {
                 stateX = true
@@ -502,6 +560,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 amdau.value = x
             }
+            if(state == 0) {
+                refCodeNow.value = x+y+" - "
+            } else if(state == 1){
+                var ad = refCodeNow.value?.substring(0,4)
+                refCodeNow.value = ad + " - " +x+y
+            }
         }
         joy3.setOnMoveListener { angle, strength ->
             if (strength == 0 && stateY && stateX) {
@@ -514,6 +578,7 @@ class MainActivity : AppCompatActivity() {
             } else if (strength == 0) {
                 stateX = false
                 amdau.value = ""
+                x = ""
             }
             if (strength > 70) {
                 stateX = true
@@ -539,6 +604,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 amdau.value = x
             }
+            if(state == 0) {
+                refCodeNow.value = x+y+" - "
+            } else if(state == 1){
+                var ad = refCodeNow.value?.substring(0,4)
+                refCodeNow.value = ad + " - " +x+y
+            }
         }
         joy4.setOnMoveListener { angle, strength ->
             if (strength == 0 && stateY) {
@@ -550,6 +621,7 @@ class MainActivity : AppCompatActivity() {
                 y = ""
             } else if (strength == 0) {
                 stateY = false
+                y =""
             }
             if (strength > 70) {
                 stateY = true
@@ -564,6 +636,12 @@ class MainActivity : AppCompatActivity() {
                     angle in 305..325 -> y = "f8"
                 }
             }
+            if(state == 0) {
+                refCodeNow.value = x+y+" - "
+            } else if(state == 1){
+                var ad = refCodeNow.value?.substring(0,4)
+                refCodeNow.value = ad + " - " +x+y
+            }
         }
         joy5.setOnMoveListener { angle, strength ->
             if (strength == 0 && stateY) {
@@ -575,6 +653,7 @@ class MainActivity : AppCompatActivity() {
                 y = ""
             } else if (strength == 0) {
                 stateY = false
+                y = ""
             }
             if (strength > 70) {
                 stateY = true
@@ -589,6 +668,12 @@ class MainActivity : AppCompatActivity() {
                     angle in 305..325 -> y = "e8"
                 }
             }
+            if(state == 0) {
+                refCodeNow.value = x+y+" - "
+            } else if(state == 1){
+                var ad = refCodeNow.value?.substring(0,4)
+                refCodeNow.value = ad + " - " +x+y
+            }
         }
         joy6.setOnMoveListener { angle, strength ->
             if (strength == 0 && stateY) {
@@ -600,6 +685,7 @@ class MainActivity : AppCompatActivity() {
                 y = ""
             } else if (strength == 0) {
                 stateY = false
+                y = ""
             }
             if (strength > 70) {
                 stateY = true
@@ -613,6 +699,12 @@ class MainActivity : AppCompatActivity() {
                     angle in 260..280 -> y = "d7"
                     angle in 305..325 -> y = "d8"
                 }
+            }
+            if(state == 0) {
+                refCodeNow.value = x+y+" - "
+            } else if(state == 1){
+                var ad = refCodeNow.value?.substring(0,4)
+                refCodeNow.value = ad + " - " +x+y
             }
         }
     }
@@ -633,7 +725,6 @@ class MainActivity : AppCompatActivity() {
                 setVisibleAllTextViewHintAC(true && isEnableHint)
                 initTextHintState1()
             }
-
         }
         if (state == 2) {
             code = code + x + y
@@ -643,6 +734,12 @@ class MainActivity : AppCompatActivity() {
                 textFinal.value = textFinal.value + " "
             } else {
                 textFinal.value = textFinal.value + result + " "
+                if(isPractice){
+                    if(code == textTest.first) {
+                        genTextTest()
+                        textFinal.value = ""
+                    }
+                }
             }
             // get text ung voi truong hop co ca am dau - am chinh - am cuoi
             code = ""
@@ -683,6 +780,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     // hàm gọi lúc khởi động app , dùng để lưu các cặp từ vào các list
+    fun readAllWord(){
+        val inputSource =
+            this.resources.openRawResource(R.raw.allword3) // tu dien chua cac tu theo bo luat moi (v2)
+        val xlWbDict = XSSFWorkbook(inputSource)
+        val dictionary = xlWbDict.getSheetAt(0)
+        for (i in 0..dictionary.lastRowNum) {
+            val row = dictionary.getRow(i)
+            listTotal.add(Pair(row.getCell(1).stringCellValue, row.getCell(0).stringCellValue))
+        }
+    }
+
+
     fun readInputADAC(): Sheet {
         val inputStream = this.resources.openRawResource(R.raw.dataoutadac) // file lưu các cặp âm đầu - âm chính
 //        val inputDictionary = this.resources.openRawResource(R.raw.tudienfinal)

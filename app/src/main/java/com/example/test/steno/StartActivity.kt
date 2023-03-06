@@ -41,6 +41,9 @@ class StartActivity : AppCompatActivity() {
         btnSetting.setOnClickListener {
             goToSetting()
         }
+        btnPractice.setOnClickListener {
+            goToMain(true)
+        }
     }
 
     fun loadData(){
@@ -53,8 +56,10 @@ class StartActivity : AppCompatActivity() {
 
 
 
-    fun goToMain(){
-        startActivity(Intent(this,MainActivity::class.java))
+    fun goToMain(isPractice : Boolean = false){
+        val intent = Intent(this,MainActivity::class.java)
+        intent.putExtra("PRACTICE",isPractice)
+        startActivity(intent)
     }
     fun goToSetting(){
         startActivity(Intent(this,SettingActivity::class.java))

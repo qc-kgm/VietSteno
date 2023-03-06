@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Font">
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="Font.Hint">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#2B3137</item>
+
+    </style>
+    <style name="Font.Hint.Large">
+        <item name="android:textSize">26sp</item>
+    </style>
+</resources>
