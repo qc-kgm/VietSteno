@@ -44,6 +44,7 @@ class StartActivity : AppCompatActivity() {
         btnPractice.setOnClickListener {
             goToMain(true)
         }
+//        sosanh()
     }
 
     fun loadData(){
@@ -72,7 +73,7 @@ class StartActivity : AppCompatActivity() {
         val inputSourceV1 =
             this.resources.openRawResource(R.raw.tudiensource) // tu dien chua cac tu theo bo luat ban dau (v1)
         val inputSource =
-            this.resources.openRawResource(R.raw.allword4) // tu dien chua cac tu theo bo luat moi (v2)
+            this.resources.openRawResource(R.raw.allword5) // tu dien chua cac tu theo bo luat moi (v2)
 
 //        var xlWb = WorkbookFactory.create(inputStream)
         val xlWb = XSSFWorkbook(inputStream)
@@ -109,7 +110,7 @@ class StartActivity : AppCompatActivity() {
         val inputSourceV1 =
             this.resources.openRawResource(R.raw.tudiensource) // tu dien chua cac tu theo bo luat ban dau (v1)
         val inputSource =
-            this.resources.openRawResource(R.raw.allword4)
+            this.resources.openRawResource(R.raw.allword5)
         val xlWbDict = XSSFWorkbook(inputSource)
         val xlWbDictSource = XSSFWorkbook(inputSourceV1)
         val xlWs = xlWbDictSource.getSheetAt(0)

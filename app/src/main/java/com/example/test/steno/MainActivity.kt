@@ -228,7 +228,7 @@ class MainActivity : AppCompatActivity() {
             "a5", listOf(
                 "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8",
                 "e1", "e2", "e3", "e4", "e5", "e7", "e8",
-                "f1", "f2", "f4", "f5", "f6", "f7"
+                "f1", "f2", "f4", "f5", "f6", "f7","f8"
             )
         )
         val a6 = Pair(
@@ -291,7 +291,7 @@ class MainActivity : AppCompatActivity() {
             "b6", listOf(
                 "d1", "d2", "d3", "d4", "d5", "d7", "d8",
                 "e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8",
-                "f5", "f6", "f7"
+                "f5", "f6", "f7","f2"
             )
         )
         val b7 = Pair(
@@ -312,20 +312,20 @@ class MainActivity : AppCompatActivity() {
             "c1", listOf(
                 "d1", "d2", "d3", "d4", "d5", "d7", "d8",
                 "e1", "e2", "e3", "e4", "e7", "e8",
-                "f6"
+                "f6","f7"
             )
         )
         val c2 = Pair(
             "c2", listOf(
-                "e4", "e5",
-                "f1", "f2", "f5", "f8",
-                "d1"
+                "e4", "e5","e3","e8","e6",
+                "f1", "f2", "f5", "f8","f4",
+                "d1",
             )
         ) // gop 2 am dau p va q lai de nhuong cho cho x
         val c3 = Pair(
             "c3", listOf(
                 "d1", "d2", "d3", "d4", "d5", "d7", "d8",
-                "e1", "e2", "e3", "e4", "e6", "e7", "e8", "e1",
+                "e1", "e2", "e3", "e4", "e6", "e7", "e8", "e5",
                 "f1", "f2", "f3", "f4", "f5", "f6", "f7"
             )
         )
@@ -347,7 +347,7 @@ class MainActivity : AppCompatActivity() {
             "c6", listOf(
                 "d1", "d2", "d3", "d4", "d5", "d7", "d8",
                 "e1", "e2", "e3", "e4", "e7", "e8",
-                "f6", "f7"
+                "f6", "f7","f1"
             )
         )
         val c7 = Pair(
@@ -383,7 +383,7 @@ class MainActivity : AppCompatActivity() {
         tvHintf1.text = "uê"
         tvHintf2.text = "uyê/uya"
         tvHintf3.text = "oo"
-        tvHintf4.text = "oă"
+        tvHintf4.text = "oă/uă"
         tvHintf5.text = "uâ"
         tvHintf6.text = "ươ/ưa"
         tvHintf7.text = "ia/iê/yê"
@@ -393,7 +393,7 @@ class MainActivity : AppCompatActivity() {
         tvHinte3.text = "u"
         tvHinte4.text = "ua/uô"
         tvHinte5.text = "uy"
-        tvHinte6.text = "oe"
+        tvHinte6.text = "oe/ue"
         tvHinte7.text = "oa"
         tvHinte8.text = "ô"
         tvHintd1.text = "a"
@@ -782,7 +782,7 @@ class MainActivity : AppCompatActivity() {
     // hàm gọi lúc khởi động app , dùng để lưu các cặp từ vào các list
     fun readAllWord(){
         val inputSource =
-            this.resources.openRawResource(R.raw.allword3) // tu dien chua cac tu theo bo luat moi (v2)
+            this.resources.openRawResource(R.raw.allword5) // tu dien chua cac tu theo bo luat moi (v2)
         val xlWbDict = XSSFWorkbook(inputSource)
         val dictionary = xlWbDict.getSheetAt(0)
         for (i in 0..dictionary.lastRowNum) {
@@ -798,7 +798,7 @@ class MainActivity : AppCompatActivity() {
         val inputSourceV1 =
             this.resources.openRawResource(R.raw.tudiensource) // tu dien chua cac tu theo bo luat ban dau (v1)
         val inputSource =
-            this.resources.openRawResource(R.raw.allword3) // tu dien chua cac tu theo bo luat moi (v2)
+            this.resources.openRawResource(R.raw.allword5) // tu dien chua cac tu theo bo luat moi (v2)
 
 //        var xlWb = WorkbookFactory.create(inputStream)
         val xlWb = XSSFWorkbook(inputStream)
@@ -1123,14 +1123,14 @@ class MainActivity : AppCompatActivity() {
                     else -> return listOf("")
                 }
             }
-            "oe" -> {
+            "oe/ue" -> {
                 when (dau) {
-                    "e1" -> return listOf("oe")
-                    "e2" -> return listOf("oé")
-                    "e3" -> return listOf("oè")
-                    "e4" -> return listOf("oẻ")
-                    "e5" -> return listOf("oẽ")
-                    "e6" -> return listOf("oẹ")
+                    "e1" -> return listOf("oe","ue")
+                    "e2" -> return listOf("oé","ué")
+                    "e3" -> return listOf("oè","uè")
+                    "e4" -> return listOf("oẻ","uẻ")
+                    "e5" -> return listOf("oẽ","uẽ")
+                    "e6" -> return listOf("oẹ","uẹ")
                     else -> return listOf("")
                 }
             }
@@ -1201,14 +1201,14 @@ class MainActivity : AppCompatActivity() {
                     else -> return listOf("")
                 }
             }
-            "oă" -> {
+            "oă/uă" -> {
                 when (dau) {
-                    "e1" -> return listOf("oă")
-                    "e2" -> return listOf("oắ")
-                    "e3" -> return listOf("oằ")
-                    "e4" -> return listOf("oẳ")
-                    "e5" -> return listOf("oẵ")
-                    "e6" -> return listOf("oặ")
+                    "e1" -> return listOf("oă","uă")
+                    "e2" -> return listOf("oắ","uắ")
+                    "e3" -> return listOf("oằ","uằ")
+                    "e4" -> return listOf("oẳ","uẳ")
+                    "e5" -> return listOf("oẵ","uẵ")
+                    "e6" -> return listOf("oặ","uặ")
                     else -> return listOf("")
                 }
             }
