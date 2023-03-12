@@ -13,9 +13,11 @@
         <entry key="..\:/Android/Steno/app/src/main/res/drawable/bg_numboard.xml" value="0.189453125" />
         <entry key="..\:/Android/Steno/app/src/main/res/drawable/bg_oval_4dp.xml" value="0.189453125" />
         <entry key="..\:/Android/Steno/app/src/main/res/drawable/bg_oval_start_4dp.xml" value="0.189453125" />
+        <entry key="..\:/Android/Steno/app/src/main/res/drawable/ic_joy_a.xml" value="0.189453125" />
+        <entry key="..\:/Android/Steno/app/src/main/res/drawable/ic_joy_stick_v2.xml" value="0.189453125" />
         <entry key="..\:/Android/Steno/app/src/main/res/drawable/ic_numboard.xml" value="0.189453125" />
         <entry key="..\:/Android/Steno/app/src/main/res/drawable/ic_numboard_on.xml" value="0.189453125" />
-        <entry key="..\:/Android/Steno/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Android/Steno/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Android/Steno/app/src/main/res/layout/activity_setting.xml" value="0.2" />
         <entry key="..\:/Android/Steno/app/src/main/res/layout/activity_start.xml" value="0.2" />
         <entry key="..\:/Android/Steno/app/src/main/res/mipmap-anydpi-v26/ic_app.xml" value="0.13177083333333334" />
