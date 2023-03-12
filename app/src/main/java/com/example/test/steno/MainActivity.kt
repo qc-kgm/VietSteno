@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.test.steno.utils.AppPrefs
 import com.example.test.steno.utils.AppPrefs.get
 import kotlinx.android.synthetic.main.activity_main.*
+import org.apache.poi.ss.usermodel.DataFormatter
 import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     var isPractice = false // che do luyen tap
     var textTest = Pair("","")
     var codeConfirm = ""
+    val handler = Handler()
+    var enableShift = false
 
     // 1: da co am dau va am chinh
     var code: String = ""
@@ -81,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
         amdau.observe(this, { a ->
             val listAC = listDataHint.firstOrNull { it.first == a }
-            if (state == 0) {
+            if (state == 0 && !enableShift) {
                 setVisibleAllTextViewHintAC(false)
                 initTextHintState0()
                 if (listAC != null && isEnableHint) {
@@ -121,6 +124,20 @@ class MainActivity : AppCompatActivity() {
             textFinal.value = ""
             state = 0
             amdau.value = ""
+        }
+        btnShift.setOnClickListener {
+            enableShift = !enableShift
+            amdau.value =""
+            state = 0
+            code = ""
+            it.isSelected = enableShift
+            if(enableShift) {
+                initTextHintForShiftMode()
+                setVisibleAllTextViewHintAC(true)
+            } else {
+                initTextHintState0()
+                setVisibleAllTextViewHintAC(false)
+            }
         }
     }
 
@@ -438,6 +455,63 @@ class MainActivity : AppCompatActivity() {
         tvHinte8.setTextAppearance(R.style.Font_Hint)
     }
 
+    fun initTextHintForShiftMode(){
+        tvHintf1.text = ""
+        tvHintf2.text = ""
+        tvHintf3.text = ""
+        tvHintf4.text = ""
+        tvHintf5.text = ""
+        tvHintf6.text = ""
+        tvHintf7.text = ""
+        tvHintf8.text = ""
+        tvHinte1.text = "--"
+        tvHinte2.text = "´"
+        tvHinte3.text = "`"
+        tvHinte4.text = Html.fromHtml("&#1374;")
+        tvHinte5.text = "~"
+        tvHinte6.text = "."
+        tvHinte7.text = "1"
+        tvHinte8.text = "0"
+        tvHintd1.text = "8"
+        tvHintd2.text = "9"
+        tvHintd3.text = "2"
+        tvHintd4.text = "3"
+        tvHintd5.text = "4"
+        tvHintd6.text = "5"
+        tvHintd7.text = "6"
+        tvHintd8.text = "7"
+        tvHintc1.text = "g/gh"
+        tvHintc2.text = "q/p"
+        tvHintc3.text = "x"
+        tvHintc4.text = "gi"
+        tvHintc5.text = "--"
+        tvHintc6.text = "đ"
+        tvHintc7.text = "d"
+        tvHintc8.text = "v"
+        tvHintb1.text = "ng/ngh"
+        tvHintb2.text = "m"
+        tvHintb3.text = "n"
+        tvHintb4.text = "l"
+        tvHintb5.text = "ch"
+        tvHintb6.text = "nh"
+        tvHintb7.text = "kh"
+        tvHintb8.text = "ph"
+        tvHinta1.text = "k/c"
+        tvHinta2.text = "h"
+        tvHinta3.text = "r"
+        tvHinta4.text = "b"
+        tvHinta5.text = "th"
+        tvHinta6.text = "tr"
+        tvHinta7.text = "s"
+        tvHinta8.text = "t"
+        tvHinte1.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte2.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte3.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte4.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte5.setTextAppearance(R.style.Font_Hint_Large)
+        tvHinte6.setTextAppearance(R.style.Font_Hint_Large)
+    }
+
     // đặt lại các text hint cho âm cuối và thanh điệu
     fun initTextHintState1() {
         tvHintf1.text = ""
@@ -494,8 +568,6 @@ class MainActivity : AppCompatActivity() {
         tvHinte4.setTextAppearance(R.style.Font_Hint_Large)
         tvHinte5.setTextAppearance(R.style.Font_Hint_Large)
         tvHinte6.setTextAppearance(R.style.Font_Hint_Large)
-        tvHinte7.setTextAppearance(R.style.Font_Hint_Large)
-        tvHinte8.setTextAppearance(R.style.Font_Hint_Large)
     }
 
     fun setupOnMove() {
@@ -711,41 +783,67 @@ class MainActivity : AppCompatActivity() {
 
     // hàm get các từ dựa theo code hiện tại
     fun getString() {
-        if (state == 1) {
-            code = x.plus(y)
-            // get text ung voi trang thai chi co am dau - am chinh
+        if(!enableShift) {
+            if (state == 1) {
+                code = x.plus(y)
+                // get text ung voi trang thai chi co am dau - am chinh
 //            now = listFirst.find { it.first == code }?.second ?: ""
-            now = sharedPreferences[code] ?: ""
-            if (now == "") {
-                state = 0
-                code = ""
-                setVisibleAllTextViewHintAC(false)
-            } else {
-                tvContent.text = textFinal.value + now
-                setVisibleAllTextViewHintAC(true && isEnableHint)
-                initTextHintState1()
-            }
-        }
-        if (state == 2) {
-            code = code + x + y
-//            val result = listTotal.find { it.first == code }?.second ?: ""
-            val result = sharedPreferences[code] ?: ""
-            if (result == "") {
-                textFinal.value = textFinal.value + " "
-            } else {
-                textFinal.value = textFinal.value + result + " "
-                if(isPractice){
-                    if(code == textTest.first) {
-                        genTextTest()
-                        textFinal.value = ""
-                    }
+                now = sharedPreferences[code] ?: ""
+                if (now == "") {
+                    state = 0
+                    code = ""
+                    setVisibleAllTextViewHintAC(false)
+                } else {
+                    tvContent.text = textFinal.value + now
+                    setVisibleAllTextViewHintAC(true && isEnableHint)
+                    initTextHintState1()
                 }
             }
-            // get text ung voi truong hop co ca am dau - am chinh - am cuoi
-            code = ""
-            state = 0
-            setVisibleAllTextViewHintAC(false)
-            initTextHintState0()
+            if (state == 2) {
+                code = code + x + y
+//            val result = listTotal.find { it.first == code }?.second ?: ""
+                val result = sharedPreferences[code] ?: ""
+                if (result == "") {
+                    textFinal.value = textFinal.value + " "
+                } else {
+                    textFinal.value = textFinal.value + result + " "
+                    if (isPractice) {
+                        if (code == textTest.first) {
+                            try {
+                                handler.postDelayed({
+                                    genTextTest()
+                                    textFinal.value = ""
+                                }, 300)
+                            } catch (e: Exception) {
+                                genTextTest()
+                                textFinal.value = ""
+                            }
+
+
+                        }
+                    }
+                }
+                // get text ung voi truong hop co ca am dau - am chinh - am cuoi
+                code = ""
+                state = 0
+                setVisibleAllTextViewHintAC(false)
+                initTextHintState0()
+            }
+        } else {
+            if (state == 1) {
+                code = "SFT".plus(x).plus(y)
+                // get text ung voi trang thai chi co am dau - am chinh
+//            now = listFirst.find { it.first == code }?.second ?: ""
+                now = sharedPreferences[code] ?: ""
+                if (now == "") {
+                    state = 0
+                    code = ""
+                } else {
+                    state = 0
+                    code = ""
+                    textFinal.value = textFinal.value + now + " "
+                }
+            }
         }
     }
 
@@ -806,9 +904,10 @@ class MainActivity : AppCompatActivity() {
         val xlWbDictSource = XSSFWorkbook(inputSourceV1)
 
         val xlWs = xlWb.getSheetAt(0)
+        val formatter = DataFormatter()
         for (i in 0..xlWs.lastRowNum) {
             val row = xlWs.getRow(i)
-            listFirst.add(Pair(row.getCell(7).stringCellValue, row.getCell(8).stringCellValue))
+            listFirst.add(Pair(row.getCell(7).stringCellValue, formatter.formatCellValue(row.getCell(8))))
         }
         val dictionary = xlWbDict.getSheetAt(0)
         for (i in 0..dictionary.lastRowNum) {

@@ -8,6 +8,7 @@ import com.example.test.steno.utils.AppPrefs
 import com.example.test.steno.utils.AppPrefs.set
 import com.example.test.steno.utils.AppPrefs.get
 import kotlinx.android.synthetic.main.activity_start.*
+import org.apache.poi.ss.usermodel.DataFormatter
 import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
@@ -81,10 +82,19 @@ class StartActivity : AppCompatActivity() {
         val xlWbDictSource = XSSFWorkbook(inputSourceV1)
 
         val xlWs = xlWb.getSheetAt(0)
+        val formatter = DataFormatter()
         for (i in 0..xlWs.lastRowNum) {
             val row = xlWs.getRow(i)
-            listFirst.add(Pair(row.getCell(7).stringCellValue, row.getCell(8).stringCellValue))
-            sharedPreferences.set(row.getCell(7).stringCellValue,row.getCell(8).stringCellValue)
+            listFirst.add(
+                Pair(
+                    row.getCell(7).stringCellValue,
+                    formatter.formatCellValue(row.getCell(8))
+                )
+            )
+            sharedPreferences.set(
+                row.getCell(7).stringCellValue,
+                formatter.formatCellValue(row.getCell(8))
+            )
         }
         val dictionary = xlWbDict.getSheetAt(0)
         for (i in 0..dictionary.lastRowNum) {

@@ -68,11 +68,23 @@
         app:layout_constraintStart_toEndOf="@id/btnClear" />
 
     <Button
+        android:id="@+id/btnShift"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_numboard"
+        android:textSize="30sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lnContent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/btnReload"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="8dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/lnContent"
         app:layout_constraintTop_toTopOf="@id/btnClear"
